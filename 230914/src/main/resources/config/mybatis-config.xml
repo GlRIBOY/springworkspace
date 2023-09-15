@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+  <configuration>
+  	<settings>
+  		<!-- DB의 표기법(스네이크 표기법)을 자바의 표기법(카멜 표기법)으로 바꿔준다 -->
+  		<setting name="mapUnderscoreToCamelCase" value="true"/>
+  		<!-- 자바의 널을 DB에서 무엇으로 인식시킬것인지 -->
+  		<setting name="jdbcTypeForNull" value="NULL"/>
+  	</settings>
+  	<typeAliases>
+  		<!-- 클래스명 자체가 별칭이되도록 앞에 나머지 경로를 알리아스시킴 -->
+  		<package name="com.yedam.app"/>
+  	</typeAliases>
+  	<typeHandlers>
+  		<!-- java.sql.Timestamp => java.util.Date -->
+  		<typeHandler javaType="java.sql.Date" handler="org.apache.ibatis.type.DateTypeHandler"/>
+  	</typeHandlers>
+  </configuration>
