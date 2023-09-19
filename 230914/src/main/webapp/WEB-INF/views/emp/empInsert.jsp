@@ -15,7 +15,7 @@
 			<label>last_name : <input type="text" name="lastName" required="required"></label>
 		</div>
 		<div>
-			<label>email : <input type="email" name="email" required></label>
+			<label>email : <input type="text" name="email" required></label>
 		</div>
 		<div>
 			<label>hire_date : <input type="text" name="hireDate" required></label>
