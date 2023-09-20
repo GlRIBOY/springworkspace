@@ -9,9 +9,12 @@ import com.yedam.app.board.service.BoardVO;
 @Service
 public class BoardServiceImpl implements BoardService {
 
-	@Override
+@Autowired 
+BoardMapper boardMapper;
+@Override
 	public List<BoardVO> getBoardList() {
-		return null;
+List<BoardVO> list = boardMapper.selectBoardList(new BoardVO);
+		return list;
 	}
 
 	@Override
