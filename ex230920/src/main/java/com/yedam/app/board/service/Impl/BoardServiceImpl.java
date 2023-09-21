@@ -17,8 +17,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public List<BoardVO> getBoardList() {
-		List<BoardVO> list = boardMapper.selectBoardList();
-		return list;
+		return boardMapper.selectBoardList();
 	}
 
 	@Override
@@ -28,25 +27,27 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public int insertBoardInfo(BoardVO boardVO) {
-		if (boardMapper.insertBoard(boardVO) == 1) {
-			return Integer.parseInt(boardVO.getBno());
+		int result = boardMapper.insertBoard(boardVO);
+		if (result == 1) {
+			return Integer.valueOf(boardVO.getBno());
 		} else {
 			return -1;
 		}
-	}
+	}//조건문 이걸 권장. 즉, 변수를 선언해서 담아서 사용. 안그럼 복잡할땐 코드 반복일어날수도있음.
 
 	@Override
 	public int updateBoardInfo(BoardVO boardVO) {
-		if (boardMapper.updateBoard(boardVO) == 1) {
-			return Integer.parseInt(boardVO.getBno());
-		} else {
-			return -1;
-		}
-	}
+		return boardMapper.updateBoard(boardVO) == 1 ? Integer.valueOf(boardVO.getBno()) : -1;
+	}//조건 ? true : false; / 조건문이 단순할땐 이게 더 직관적일수있음
 
 	@Override
 	public int deleteBoardInfo(int boardNo) {
-		return boardMapper.deleteBoard(boardNo);
+		int result = boardMapper.deleteBoard(boardNo);
+		if (result == 1) {
+			return boardNo;
+		} else {
+			return -1;
+		}
 	}
 
 }
