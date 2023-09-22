@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yedam.app.board.service.BoardService;
@@ -63,7 +64,7 @@ public class BoardController {
 		int result = boardService.updateBoardInfo(boardVO);
 		if(result > -1) {
 			map.put("result",  true);
-			map.put("bno", result);
+			map.put("bno", result);  
 		}else {
 			map.put("result", false);
 		}
@@ -71,7 +72,7 @@ public class BoardController {
 	}
 	//삭제 - 처리 : URI = boardDelete / Parameter = bno / RETURN = 전체조회 다시 호출
 	@GetMapping("boardDelete")
-	public String boardDelete(@RequestBody Integer bno) {
+	public String boardDelete(@RequestParam Integer bno) {
 		boardService.deleteBoardInfo(bno);
 		return "redirect:boardList";
 	}
